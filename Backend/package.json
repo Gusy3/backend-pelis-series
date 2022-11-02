@@ -4,7 +4,9 @@
   "description": "Api RESTful para el proyecto de Pelis y Series",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+
   },
   "author": "Manuel Jesus Coronel Carrasco",
   "license": "MIT",
@@ -13,5 +15,6 @@
     "express": "^4.18.1",
     "mongoose": "^6.6.0",
     "validator": "^13.7.0"
-  }
+  },
+  "type": "module"
 }
