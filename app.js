@@ -8,7 +8,7 @@ import bodyParser from 'body-parser';
 var app = express();
 
 // Cargar ficheros rutas
-//import contact_routes from "./routes/contacts.js";
+import peli_routes from "./routes/peli.js";
 
 //MiddLewares
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,7 +24,7 @@ app.use((req, res, next) => {
 });
 
 // Añadir prefijos a rutas / Cargar rutas
-//app.use('/api', contact_routes);
+app.use('/api', peli_routes);
 
 // Exportar el módulo (fichero actual)
 export default app;
