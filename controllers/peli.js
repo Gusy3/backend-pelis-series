@@ -15,27 +15,27 @@ var controller = {
 
             var validator_title = !validator.isEmpty(params.title);
             var validator_gender = !validator.isEmpty(params.gender);
-            var validator_year = !validator.isEmpty(params.year) && (params.year>=1000 && params.year<=9999);
+            var validator_year = params.year>=1000 && params.year<=9999;
             var validator_resolution = !validator.isEmpty(params.resolution);
             var validator_codec = !validator.isEmpty(params.codec);
-            var validator_size = !validator.isEmpty(params.size) && params.size>=0;
+            var validator_size = params.size>=0;
             var validator_synopsis = !validator.isEmpty(params.synopsis);
             var validator_image = validateImageUrl(params.image);
+            var validator_viewed = !validator.isEmpty(params.viewed);
 
         }catch(error){
 
             return response.status(404).send({
 
                 status: "error",
-                message: "Faltan datos",
-                image: validator_image
+                message: "Faltan datos"
     
             });
 
         }
 
         if (validator_title && validator_gender && validator_year && validator_resolution &&
-            validator_codec && validator_size && validator_synopsis && validator_image){
+            validator_codec && validator_size && validator_synopsis && validator_image && validator_viewed){
 
             // Crear el objeto a guardar
             var peli = new Peli();
@@ -48,7 +48,8 @@ var controller = {
             peli.codec = params.codec;
             peli.size = params.size;
             peli.synopsis = params.synopsis;
-            peli.image = params.image
+            peli.image = params.image;
+            peli.viewed = params.viewed;
 
             // Guardar la peli
             peli.save((error, peliStored)=>{
@@ -91,7 +92,7 @@ var controller = {
     getFilms: (request, response)=>{
 
         // Find
-        Peli.find().sort('-_id').exec((error, films)=> {
+        Peli.find().sort('-created_at').exec((error, films)=> {
 
             if(error){
 
@@ -183,12 +184,13 @@ var controller = {
 
             var validator_title = !validator.isEmpty(params.title);
             var validator_gender = !validator.isEmpty(params.gender);
-            var validator_year = !validator.isEmpty(params.year) && (params.year>=1000 && params.year<=9999);
+            var validator_year = params.year>=1000 && params.year<=9999;
             var validator_resolution = !validator.isEmpty(params.resolution);
             var validator_codec = !validator.isEmpty(params.codec);
-            var validator_size = !validator.isEmpty(params.size) && params.size>=0;
+            var validator_size = params.size>=0;
             var validator_synopsis = !validator.isEmpty(params.synopsis);
             var validator_image = validateImageUrl(params.image);
+            var validator_viewed = !validator.isEmpty(params.viewed);
 
         }catch(error){
 
@@ -202,7 +204,7 @@ var controller = {
         }
 
         if (validator_title && validator_gender && validator_year && validator_resolution &&
-            validator_codec && validator_size && validator_synopsis && validator_image){
+            validator_codec && validator_size && validator_synopsis && validator_image && validator_viewed){
 
             // Buscar la pelicula y actualizarla
             Peli.findByIdAndUpdate({_id: filmId}, params, {new: true}, (error, filmUpdated)=>{
@@ -308,7 +310,7 @@ var controller = {
         }
 
         // Find
-        Peli.find(query).collation({locale: "en", strength: 1}).sort('-_id').exec((error, films)=> {
+        Peli.find(query).collation({locale: "en", strength: 1}).sort('-created_at').exec((error, films)=> {
 
             if(error){
 
