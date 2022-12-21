@@ -12,6 +12,7 @@ var PeliSchema= Schema({
     size: Number,
     synopsis: String,
     image: String,
+    viewed: String,
     created_at: {type: Date, default: Date.now}
 }, {
     versionKey: false
