@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var PeliSchema= Schema({
     title: String,
+    version: String,
     gender: String,
     year: Number,
     resolution: String,
