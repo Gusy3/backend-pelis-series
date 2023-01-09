@@ -14,6 +14,7 @@ var controller = {
         try{
 
             var validator_title = !validator.isEmpty(params.title);
+            var validator_version = !validator.isEmpty(params.version);
             var validator_gender = !validator.isEmpty(params.gender);
             var validator_year = params.year>=1000 && params.year<=9999;
             var validator_resolution = !validator.isEmpty(params.resolution);
@@ -34,7 +35,7 @@ var controller = {
 
         }
 
-        if (validator_title && validator_gender && validator_year && validator_resolution &&
+        if (validator_title && validator_version && validator_gender && validator_year && validator_resolution &&
             validator_codec && validator_size && validator_synopsis && validator_image && validator_viewed){
 
             // Crear el objeto a guardar
@@ -42,6 +43,7 @@ var controller = {
 
             // Asignar los valores
             peli.title = params.title;
+            peli.version = params.version;
             peli.gender = params.gender;
             peli.year = params.year;
             peli.resolution = params.resolution;
@@ -183,6 +185,7 @@ var controller = {
         try{
 
             var validator_title = !validator.isEmpty(params.title);
+            var validator_version = !validator.isEmpty(params.version);
             var validator_gender = !validator.isEmpty(params.gender);
             var validator_year = params.year>=1000 && params.year<=9999;
             var validator_resolution = !validator.isEmpty(params.resolution);
@@ -203,7 +206,7 @@ var controller = {
 
         }
 
-        if (validator_title && validator_gender && validator_year && validator_resolution &&
+        if (validator_title && validator_version && validator_gender && validator_year && validator_resolution &&
             validator_codec && validator_size && validator_synopsis && validator_image && validator_viewed){
 
             // Buscar la pelicula y actualizarla
