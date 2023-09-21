@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
-const SECRET_KEY = "P3l1cul4syS3r13s";
+import 'dotenv/config';
+
+const SECRET_KEY = process.env.SECRET_KEY;
 
 var verifyToken = (request, response, next)=>{
 
