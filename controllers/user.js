@@ -3,8 +3,9 @@
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import 'dotenv/config';
 
-const SECRET_KEY = "P3l1cul4syS3r13s";
+const SECRET_KEY = process.env.SECRET_KEY;
 
 var controller = {
 
