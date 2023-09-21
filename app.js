@@ -8,7 +8,12 @@ import bodyParser from 'body-parser';
 var app = express();
 
 // Cargar ficheros rutas
-import peli_routes from "./routes/peli.js";
+import all_routes from "./routes/films_series.js";
+import film_routes from "./routes/film.js";
+import serie_routes from "./routes/serie.js";
+import season_routes from "./routes/season.js";
+import chapter_routes from "./routes/chapter.js";
+import user_routes from "./routes/user.js";
 
 //MiddLewares
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,7 +29,12 @@ app.use((req, res, next) => {
 });
 
 // Añadir prefijos a rutas / Cargar rutas
-app.use('/api', peli_routes);
+app.use('/api', user_routes);
+app.use('/api', all_routes);
+app.use('/api', film_routes);
+app.use('/api', serie_routes);
+app.use('/api', season_routes);
+app.use('/api', chapter_routes);
 
 // Exportar el módulo (fichero actual)
 export default app;
