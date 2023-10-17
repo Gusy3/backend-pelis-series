@@ -31,9 +31,25 @@ var verifyToken = (request, response, next)=>{
 
     }
 
-    const payload = jwt.verify(token, SECRET_KEY);
-    request.userId = payload._id;
-    next();
+    jwt.verify(token, SECRET_KEY, (error, user) =>{
+
+        if(error){
+
+            console.log("error");
+
+            return response.status(403).send({
+
+                status: "error",
+                message: "Token no válido"
+
+            });
+
+        }
+
+        request.userId = user.id;
+        next();
+
+    });
 
 }
 
